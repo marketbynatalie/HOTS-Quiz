@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTS Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .question { margin-bottom: 15px; }
+        .results { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>HOTS (Hare, Owl, Turtle, Squirrel) Quiz</h2>
+    <p>Mark the option that best describes your strengths and talents.</p>
+    
+    <form id="quizForm">
+        <div class="question">
+            <p>1. What if vs. What is</p>
+            <label><input type="radio" name="q1" value="Hare"> What if</label>
+            <label><input type="radio" name="q1" value="Owl"> What is</label>
+        </div>
+
+        <div class="question">
+            <p>2. Order vs. Chaos</p>
+            <label><input type="radio" name="q2" value="Turtle"> Order</label>
+            <label><input type="radio" name="q2" value="Hare"> Chaos</label>
+        </div>
+        
+        <div class="question">
+            <p>3. New ideas vs. Status quo</p>
+            <label><input type="radio" name="q3" value="Hare"> New ideas</label>
+            <label><input type="radio" name="q3" value="Turtle"> Status quo</label>
+        </div>
+        
+        <div class="question">
+            <p>4. Revenue vs. Profit</p>
+            <label><input type="radio" name="q4" value="Owl"> Revenue</label>
+            <label><input type="radio" name="q4" value="Squirrel"> Profit</label>
+        </div>
+
+        <div class="question">
+            <p>5. Incremental vs. Radical</p>
+            <label><input type="radio" name="q5" value="Turtle"> Incremental</label>
+            <label><input type="radio" name="q5" value="Hare"> Radical</label>
+        </div>
+        
+        <div class="question">
+            <p>6. Wait vs. Jump in</p>
+            <label><input type="radio" name="q6" value="Turtle"> Wait</label>
+            <label><input type="radio" name="q6" value="Hare"> Jump in</label>
+        </div>
+
+        <div class="question">
+            <p>7. Intuition vs. Information</p>
+            <label><input type="radio" name="q7" value="Hare"> Intuition</label>
+            <label><input type="radio" name="q7" value="Owl"> Information</label>
+        </div>
+        
+        <div class="question">
+            <p>8. Influence vs. Go along</p>
+            <label><input type="radio" name="q8" value="Owl"> Influence</label>
+            <label><input type="radio" name="q8" value="Turtle"> Go along</label>
+        </div>
+        
+        <button type="button" onclick="calculateResults()">See My Result</button>
+    </form>
+    
+    <div class="results" id="results"></div>
+    
+    <script>
+        function calculateResults() {
+            let scores = { Hare: 0, Owl: 0, Turtle: 0, Squirrel: 0 };
+            let form = document.getElementById('quizForm');
+            let inputs = form.getElementsByTagName('input');
+            
+            for (let input of inputs) {
+                if (input.checked) {
+                    scores[input.value]++;
+                }
+            }
+            
+            let highestType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            document.getElementById('results').innerText = "Your dominant style is: " + highestType;
+        }
+    </script>
+</body>
+</html>
